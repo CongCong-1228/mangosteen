@@ -1,4 +1,5 @@
 import { defineComponent, ref } from "vue";
+import { RouterLink, RouterView } from "vue-router";
 
 export const App = defineComponent({
     setup() {
@@ -8,10 +9,7 @@ export const App = defineComponent({
         };
         return () => (
             <>
-                <div class="container mx-auto bg-gray-200 rounded-xl shadow border p-8 m-10">
-                    {count.value}
-                </div>
-                <button onClick={onClick}>+1</button>
+                <RouterView />
             </>
         );
     },
