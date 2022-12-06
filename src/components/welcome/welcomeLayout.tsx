@@ -8,7 +8,7 @@ export const WelcomeLayout = defineComponent({
         }: any = context;
         return () => {
             return (
-                <div class="flex flex-col relative grow items-center justify-start w-full rounded-2xl bg-white">
+                <div class="flex flex-col items-center justify-start w-full rounded-2xl bg-white">
                     <img
                         src={icon}
                         alt=""
