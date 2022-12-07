@@ -34,7 +34,7 @@ export const useSwipe = (element: Ref) => {
 
     const onStart = (e: TouchEvent) => {
         const div = e.target as HTMLDivElement;
-        if (div.innerText === "下一页") {
+        if (div.innerText === "下一页" || div.innerText === "开启应用") {
             div.click();
             return;
         } else {

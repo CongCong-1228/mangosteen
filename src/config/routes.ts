@@ -4,6 +4,7 @@ import { Forth } from "../components/welcome/forth";
 import { Second } from "../components/welcome/second";
 import { Third } from "../components/welcome/third";
 import { Welcome } from "../views/welcome";
+import { Start } from "../views/start";
 
 export const routes: RouteRecordRaw[] = [
     { path: "/", redirect: "/welcome/first" },
@@ -18,4 +19,5 @@ export const routes: RouteRecordRaw[] = [
             { path: "forth", component: Forth },
         ],
     },
+    { path: "/start", component: Start },
 ];

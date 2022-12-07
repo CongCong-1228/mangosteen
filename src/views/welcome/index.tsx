@@ -107,7 +107,7 @@ export const Welcome = defineComponent({
                         to="/start"
                         class="absolute top-4 right-4 text-[24px] text-white font-bold cursor-pointer"
                     >
-                        跳过
+                        {route.path === "/welcome/forth" ? "" : "跳过"}
                     </RouterLink>
                 </div>
             );

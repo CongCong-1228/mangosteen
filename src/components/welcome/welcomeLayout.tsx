@@ -1,11 +1,12 @@
 import { defineComponent } from "vue";
-import { RouterLink } from "vue-router";
+import { RouterLink, useRoute } from "vue-router";
 
 export const WelcomeLayout = defineComponent({
     setup(props, context) {
         const {
             attrs: { icon, title, buttonLink },
         }: any = context;
+        const route = useRoute();
         return () => {
             return (
                 <div class="flex flex-col items-center justify-start w-full rounded-2xl bg-white">
@@ -22,7 +23,9 @@ export const WelcomeLayout = defineComponent({
                         to={buttonLink}
                         class="text-2xl absolute bottom-8 font-bold leading-2xl cursor-pointer text-[#6035BF]"
                     >
-                        下一页
+                        {route.path === "/welcome/forth"
+                            ? "开启应用"
+                            : "下一页"}
                     </RouterLink>
                 </div>
             );
