@@ -7,7 +7,6 @@ export const imageLoad = (url: string) => {
             if (xhr.readyState === 4) {
                 resolve(xhr.response);
             } else {
-                console.log("xhr.readyState", xhr.readyState);
                 reject(new Error("Image not load successfully"));
             }
         };
