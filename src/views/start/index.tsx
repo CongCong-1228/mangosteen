@@ -4,7 +4,7 @@ import { CommonButton } from "../../components/button";
 
 export const Start = defineComponent({
     setup() {
-        const onClick = (): void => {
+        const onClick = () => {
             console.log("hello");
         };
         return () => {
