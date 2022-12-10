@@ -1,11 +1,12 @@
 import { defineComponent } from "vue";
 import bank from "../../assets/icons/bank.png";
 import { CommonButton } from "../../components/button";
+import { FloatButton } from "../../components/floatButton";
 
 export const Start = defineComponent({
     setup() {
         const onClick = () => {
-            console.log("hello");
+            console.log("开始记账");
         };
         return () => {
             return (
@@ -19,6 +20,7 @@ export const Start = defineComponent({
                         title={"开始记账"}
                         clickEvent={onClick}
                     ></CommonButton>
+                    <FloatButton />
                 </div>
             );
         };
