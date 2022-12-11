@@ -31,7 +31,9 @@ export const Start = defineComponent({
                         ></CommonButton>
                         <FloatButton />
                     </div>
-                    {menuVisible.value && <OverLay />}
+                    {menuVisible.value && (
+                        <OverLay onClose={() => (menuVisible.value = false)} />
+                    )}
                 </div>
             );
         };
