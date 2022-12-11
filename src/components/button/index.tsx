@@ -3,10 +3,11 @@ import { defineComponent, PropType, toRefs } from "vue";
 export const CommonButton = defineComponent({
     props: {
         title: {
-            type: String,
+            type: String as PropType<string>,
             required: true,
         },
         clickEvent: {
+            // 前面是js类型，后面是ts类型
             type: Function as PropType<(payload: MouseEvent) => void>,
             required: true,
         },
