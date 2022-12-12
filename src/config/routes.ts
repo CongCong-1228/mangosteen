@@ -5,6 +5,9 @@ import { Second } from "../components/welcome/second";
 import { Third } from "../components/welcome/third";
 import { Welcome } from "../views/welcome";
 import { Start } from "../views/start";
+import { ItemPage } from "../views/item";
+import { ItemCreate } from "../views/item/itemCreate";
+import { ItemList } from "../views/item/itemList";
 
 export const routes: RouteRecordRaw[] = [
     { path: "/", redirect: "/welcome/first" },
@@ -20,4 +23,12 @@ export const routes: RouteRecordRaw[] = [
         ],
     },
     { path: "/start", component: Start },
+    {
+        path: "/item",
+        component: ItemPage,
+        children: [
+            { path: "create", component: ItemCreate },
+            { path: "", component: ItemList },
+        ],
+    },
 ];

@@ -1,4 +1,5 @@
 import { defineComponent, ref } from "vue";
+import { RouterLink } from "vue-router";
 import bank from "../../assets/icons/bank.png";
 import { CommonButton } from "../../components/button";
 import { FloatButton } from "../../components/floatButton";
@@ -25,11 +26,15 @@ export const Start = defineComponent({
                             src={bank}
                             class="mt-44 w-32 h-32 object-cover mb-28"
                         ></img>
-                        <CommonButton
-                            title={"开始记账"}
-                            clickEvent={onClick}
-                        ></CommonButton>
-                        <FloatButton />
+                        <RouterLink to="/item/create" class="w-full">
+                            <CommonButton
+                                title={"开始记账"}
+                                clickEvent={onClick}
+                            ></CommonButton>
+                        </RouterLink>
+                        <RouterLink to="/item/create">
+                            <FloatButton />
+                        </RouterLink>
                     </div>
                     {menuVisible.value && (
                         <OverLay onClose={() => (menuVisible.value = false)} />
