@@ -5,6 +5,7 @@ import { CommonButton } from "../../components/button";
 import { FloatButton } from "../../components/floatButton";
 import { NavBar } from "../../components/navBar";
 import { OverLay } from "../../components/overLay";
+import menu from "../../assets/icons/menu.svg";
 
 export const Start = defineComponent({
     setup() {
@@ -19,7 +20,11 @@ export const Start = defineComponent({
         return () => {
             return (
                 <div class="h-[100vh] w-[100vw] flex flex-col relative">
-                    <NavBar onClick={onClickMenu} />
+                    <NavBar
+                        title="山竹记账"
+                        icon={menu}
+                        onClick={onClickMenu}
+                    />
                     <div class="flex flex-col justify-start items-center">
                         <img
                             alt="logo"

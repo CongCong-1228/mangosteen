@@ -1,14 +1,10 @@
 import { defineComponent } from "vue";
-import { ItemCreate } from "./itemCreate";
+import { RouterView } from "vue-router";
 
 export const ItemPage = defineComponent({
     setup() {
         return () => {
-            return (
-                <>
-                    <ItemCreate />
-                </>
-            );
+            return <RouterView />;
         };
     },
 });
