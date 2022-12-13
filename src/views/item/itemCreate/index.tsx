@@ -2,6 +2,7 @@ import { defineComponent, ref } from "vue";
 import { NavBar } from "../../../components/navBar";
 import backIcon from "../../../assets/icons/back.svg";
 import { Tabs, Tab } from "../../../components/tabs";
+import { CountPad } from "../../../components/countPad";
 
 export const ItemCreate = defineComponent({
     setup() {
@@ -22,6 +23,9 @@ export const ItemCreate = defineComponent({
                         <Tab name="支出">list1</Tab>
                         <Tab name="收入">list2</Tab>
                     </Tabs>
+                    <div class="fixed bottom-0 w-full">
+                        <CountPad />
+                    </div>
                 </>
             );
         };

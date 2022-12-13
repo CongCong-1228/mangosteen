@@ -4,6 +4,7 @@ import "./index.scss";
 import { createRouter } from "vue-router";
 import { routes } from "./config/routes";
 import { history } from "./utils/history";
+import "vant/lib/index.css";
 
 const router = createRouter({
     history,
