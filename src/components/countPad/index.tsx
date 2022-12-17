@@ -15,8 +15,14 @@ export const CountPad = defineComponent({
         };
         const countNumber = ref("0");
         const countFunction = (count: string | number) => {
-            console.log("aaa", count);
-            countNumber.value += count.toString();
+            const nString = count.toString();
+            const dotIndex = countNumber.value.indexOf(".");
+            const countNumberLength = countNumber.value.length;
+            if (countNumberLength >= 13) return;
+            if (dotIndex !== -1 && countNumberLength - dotIndex > 2) return;
+            if (countNumber.value === "0" && nString !== ".")
+                countNumber.value = "";
+            countNumber.value += nString;
         };
         const buttons = [
             {
@@ -80,7 +86,12 @@ export const CountPad = defineComponent({
             },
             {
                 title: ".",
-                onclick: () => countFunction("."),
+                onclick: () => {
+                    if (countNumber.value.indexOf(".") !== -1) {
+                        return;
+                    }
+                    countFunction(".");
+                },
             },
         ];
         return () => {
