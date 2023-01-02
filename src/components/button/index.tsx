@@ -17,7 +17,7 @@ export const CommonButton = defineComponent({
         const { title, clickEvent } = toRefs(props);
         return () => {
             return (
-                <div class={`w-full p-4`}>
+                <div class={`w-full`}>
                     <button
                         class="rounded-lg bg-[#5C33BE] text-[18px] text-[#fff] font-[350] h-12 w-full cursor-pointer"
                         onClick={clickEvent.value}

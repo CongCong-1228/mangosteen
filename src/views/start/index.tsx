@@ -31,13 +31,13 @@ export const Start = defineComponent({
                             src={bank}
                             class="mt-44 w-32 h-32 object-cover mb-28"
                         ></img>
-                        <RouterLink to="/item/create" class="w-full">
+                        <RouterLink to="/item/create" class="w-full p-4">
                             <CommonButton
                                 title={"开始记账"}
                                 clickEvent={onClick}
                             ></CommonButton>
                         </RouterLink>
-                        <RouterLink to="/item/create">
+                        <RouterLink to="/item/create" class="w-full p-4">
                             <FloatButton />
                         </RouterLink>
                     </div>

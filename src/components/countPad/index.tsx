@@ -7,8 +7,13 @@ export const CountPad = defineComponent({
         const columnsType: DatePickerColumnType[] = ["year", "month", "day"];
         const showDatePicker = ref(false);
         const nowDate = dayjs(new Date());
+        console.log(nowDate.month());
         const datePickerValue = ref(
-            nowDate.year() + "-" + nowDate.month() + "-" + nowDate.date()
+            nowDate.year() +
+                "-" +
+                (nowDate.month() + 1).toString() +
+                "-" +
+                nowDate.date()
         );
         const closeDatePicker = () => {
             showDatePicker.value = false;
