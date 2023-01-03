@@ -1,0 +1,37 @@
+.emojiTab {
+    &::-webkit-scrollbar {
+        display: none;
+    }
+    & > span {
+        flex-shrink: 0;
+        display: inline-block;
+        padding: 6px;
+        padding-top: 0px;
+        padding-left: 0px;
+        color: #999999;
+        font-size: 18px;
+        font-weight: 350;
+        line-height: 16px;
+
+        &.selected {
+            color: #333;
+        }
+    }
+}
+
+.emojiListWrapper {
+    line-height: 34px;
+    align-content: flex-start;
+    height: calc(34px * 12);
+    padding: 1px 0px;
+    &::-webkit-scrollbar {
+        display: none;
+    }
+    & > li {
+        font-size: 24px;
+        flex-shrink: 0;
+        flex-grow: 0;
+        text-align: center;
+        width: 10%;
+    }
+}
