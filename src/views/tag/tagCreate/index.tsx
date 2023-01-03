@@ -1,4 +1,4 @@
-import { defineComponent, reactive } from "vue";
+import { defineComponent, reactive, ref } from "vue";
 import { NavBar } from "../../../components/navBar";
 import left from "@/assets/icons/back.svg";
 import "./index.scss";
@@ -39,9 +39,11 @@ export const TagCreate = defineComponent({
                                     />
                                 </label>
                                 <label class="flex flex-col items-start w-full grow">
-                                    <span class="mb-[10px]">符号</span>
+                                    <span class="mb-[10px]">
+                                        符号 {formData.sign}
+                                    </span>
                                 </label>
-                                <EmojiSelect />
+                                <EmojiSelect v-model={formData.sign} />
                                 <p class="text-[16px] font-[350] mt-[26px] text-center mb-[30px]">
                                     记账时长按标签，即可进行编辑
                                 </p>

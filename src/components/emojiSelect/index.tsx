@@ -1,10 +1,16 @@
-import { defineComponent, ref } from "vue";
+import { PropType, defineComponent, ref } from "vue";
 import "./index.scss";
 import { emojiList } from "@/utils/emojiList";
 
 export const EmojiSelect = defineComponent({
-    setup() {
-        const selectedRef = ref(0);
+    props: {
+        modelValue: {
+            type: String as PropType<string>,
+        },
+    },
+    emits: ["update:modelValue"],
+    setup(props, context) {
+        const selectedTabRef = ref(0);
         const table = [
             {
                 index: 0,
@@ -81,26 +87,54 @@ export const EmojiSelect = defineComponent({
             },
             { index: 8, name: "运动", list: ["sport", "game"] },
         ];
+        const onClickTab = (index: number) => {
+            selectedTabRef.value = index;
+        };
+        const onClickEmoji = (emoji: string) => {
+            context.emit("update:modelValue", emoji);
+        };
         return () => {
             return (
                 <div class="flex flex-col border-solid border border-[#5C33BE] pt-[10px] px-[12px] w-full rounded-lg">
                     <nav class="emojiTab flex flex-nowrap overflow-auto">
                         {table.map((item) => (
-                            <span>{item.name}</span>
+                            <span
+                                class={
+                                    selectedTabRef.value === item.index
+                                        ? "selected"
+                                        : ""
+                                }
+                                onClick={() => onClickTab(item.index)}
+                            >
+                                {item.name}
+                            </span>
                         ))}
                     </nav>
                     <div>
                         <ul class="emojiListWrapper flex flex-wrap items-center overflow-auto">
-                            {table[selectedRef.value].list.map((category) => {
-                                const emojis = emojiList.find(
-                                    (item) => item[0] === category
-                                );
-                                if (emojis) {
-                                    return emojis[1].map((item) => (
-                                        <li>{item}</li>
-                                    ));
+                            {table[selectedTabRef.value].list.map(
+                                (category) => {
+                                    const emojis = emojiList.find(
+                                        (item) => item[0] === category
+                                    );
+                                    if (emojis) {
+                                        return emojis[1].map((item) => (
+                                            <li
+                                                class={
+                                                    props.modelValue === item
+                                                        ? "selectedEmoji"
+                                                        : "no-selectedEmoji"
+                                                }
+                                                onClick={() =>
+                                                    onClickEmoji(item)
+                                                }
+                                            >
+                                                {item}
+                                            </li>
+                                        ));
+                                    }
                                 }
-                            })}
+                            )}
                         </ul>
                     </div>
                 </div>

@@ -2,6 +2,7 @@
     &::-webkit-scrollbar {
         display: none;
     }
+
     & > span {
         flex-shrink: 0;
         display: inline-block;
@@ -24,14 +25,25 @@
     align-content: flex-start;
     height: calc(34px * 12);
     padding: 1px 0px;
+
     &::-webkit-scrollbar {
         display: none;
     }
+
     & > li {
         font-size: 24px;
         flex-shrink: 0;
         flex-grow: 0;
         text-align: center;
         width: 10%;
+
+        &.no-selectedEmoji {
+            border: 1px solid transparent;
+        }
+
+        &.selectedEmoji {
+            border: 1px solid #5c33be;
+            border-radius: 4px;
+        }
     }
 }
