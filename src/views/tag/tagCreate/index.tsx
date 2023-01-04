@@ -1,4 +1,4 @@
-import { defineComponent, reactive, ref } from "vue";
+import { defineComponent, reactive, ref, toRaw } from "vue";
 import { NavBar } from "../../../components/navBar";
 import left from "@/assets/icons/back.svg";
 import "./index.scss";
@@ -8,13 +8,15 @@ import { EmojiSelect } from "@/components/emojiSelect";
 export const TagCreate = defineComponent({
     setup() {
         const reg = new RegExp("/^[\u4e00-\u9fa5]{2,4}$/");
-        const onClick = () => {
-            console.log("确定");
-        };
         const formData = reactive({
             name: "",
             sign: "",
         });
+        const onSubmit = (e: Event) => {
+            e.preventDefault();
+            console.log("format", toRaw(formData));
+            const rules = [];
+        };
         return () => {
             return (
                 <>
@@ -25,7 +27,11 @@ export const TagCreate = defineComponent({
                     ></NavBar>
                     <main class="w-full pt-[34px] pb-[60px] px-4">
                         <div class="flex items-start justify-center flex-col">
-                            <form action="" class="w-full flex flex-col">
+                            <form
+                                action=""
+                                class="w-full flex flex-col"
+                                onSubmit={onSubmit}
+                            >
                                 <label class="flex flex-col items-start pb-[22px]">
                                     <span class="text-[18px] font-[350] mb-[10px]">
                                         标签名
@@ -49,7 +55,7 @@ export const TagCreate = defineComponent({
                                 </p>
                                 <CommonButton
                                     title="确定"
-                                    clickEvent={onClick}
+                                    clickEvent={onSubmit}
                                 />
                             </form>
                         </div>
