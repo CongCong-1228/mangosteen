@@ -4,18 +4,36 @@ import left from "@/assets/icons/back.svg";
 import "./index.scss";
 import { CommonButton } from "@/components/button";
 import { EmojiSelect } from "@/components/emojiSelect";
+import { Rules, validate } from "@/utils/validate";
 
 export const TagCreate = defineComponent({
     setup() {
-        const reg = new RegExp("/^[\u4e00-\u9fa5]{2,4}$/");
         const formData = reactive({
             name: "",
             sign: "",
         });
+        const errors = reactive<{ [k in keyof typeof formData]?: string[] }>(
+            {}
+        );
         const onSubmit = (e: Event) => {
             e.preventDefault();
-            console.log("format", toRaw(formData));
-            const rules = [];
+            const rules: Rules<typeof formData> = [
+                { key: "name", type: "required", message: "必填" },
+                {
+                    key: "name",
+                    type: "pattern",
+                    regex: /^.{1,4}$/,
+                    message: "只能填 1 到 4 个字符",
+                },
+                { key: "sign", type: "required", message: "必填" },
+            ];
+            Object.assign(errors, {
+                name: undefined,
+                sign: undefined,
+            });
+            Object.assign(errors, validate(formData, rules));
+            console.log("errors", toRaw(errors));
+            console.log("formData", toRaw(formData));
         };
         return () => {
             return (
@@ -32,7 +50,7 @@ export const TagCreate = defineComponent({
                                 class="w-full flex flex-col"
                                 onSubmit={onSubmit}
                             >
-                                <label class="flex flex-col items-start pb-[22px]">
+                                <label class="flex flex-col items-start pb-[5px]">
                                     <span class="text-[18px] font-[350] mb-[10px]">
                                         标签名
                                     </span>
@@ -40,17 +58,24 @@ export const TagCreate = defineComponent({
                                         v-model={formData.name}
                                         class="tagTitle border-solid border w-full h-[48px] rounded-lg border-[#5C33BE] pl-[16px]"
                                         type="text"
-                                        placeholder="2到4个汉字"
-                                        maxlength={4}
+                                        placeholder="1-4个字符"
                                     />
                                 </label>
+                                <div class="text-[red] min-h-[24px] text-[14px]">
+                                    {errors["name"] && errors["name"][0]}
+                                </div>
                                 <label class="flex flex-col items-start w-full grow">
                                     <span class="mb-[10px]">
                                         符号 {formData.sign}
                                     </span>
                                 </label>
-                                <EmojiSelect v-model={formData.sign} />
-                                <p class="text-[16px] font-[350] mt-[26px] text-center mb-[30px]">
+                                <div class="pb-[6px]">
+                                    <EmojiSelect v-model={formData.sign} />
+                                </div>
+                                <div class="text-[red] min-h-[24px] text-[14px]">
+                                    {errors["sign"] && errors["sign"][0]}
+                                </div>
+                                <p class="text-[16px] font-[350] mt-[10px] text-center mb-[10px]">
                                     记账时长按标签，即可进行编辑
                                 </p>
                                 <CommonButton
