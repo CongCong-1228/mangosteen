@@ -46,11 +46,7 @@ export const Tabs = defineComponent({
                             })}
                         </ol>
                     </nav>
-                    <div>
-                        {tabs.find(
-                            (item) => item.props?.name === props.selected
-                        )}
-                    </div>
+                    {tabs.find((item) => item.props?.name === props.selected)}
                 </>
             );
         };
@@ -67,7 +63,11 @@ export const Tab = defineComponent({
     setup(props, context) {
         return () => {
             // 返回插槽
-            return <>{context.slots.default?.()}</>;
+            return (
+                <div class="flex justify-start grow flex-wrap overflow-auto">
+                    {context.slots.default?.()}
+                </div>
+            );
         };
     },
 });
