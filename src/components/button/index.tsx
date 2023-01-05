@@ -1,4 +1,5 @@
 import { defineComponent, PropType, toRefs } from "vue";
+import "./index.scss";
 
 export const CommonButton = defineComponent({
     props: {
@@ -11,6 +12,9 @@ export const CommonButton = defineComponent({
             type: Function as PropType<(payload: MouseEvent) => void>,
             required: true,
         },
+        level: {
+            type: String as PropType<"normal" | "danger" | "success">,
+        },
     },
     setup(props) {
         // 将props的数据转换成响应式的ref，调用时要用.value
@@ -19,7 +23,10 @@ export const CommonButton = defineComponent({
             return (
                 <div class={`w-full`}>
                     <button
-                        class="rounded-lg bg-[#5C33BE] text-[18px] text-[#fff] font-[350] h-12 w-full cursor-pointer"
+                        class={[
+                            "rounded-lg text-[18px] text-[#fff] font-[350] h-12 w-full cursor-pointer",
+                            props.level,
+                        ]}
                         onClick={clickEvent.value}
                     >
                         {title.value}
