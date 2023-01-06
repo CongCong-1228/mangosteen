@@ -14,6 +14,7 @@ export const CommonButton = defineComponent({
         },
         level: {
             type: String as PropType<"normal" | "danger" | "success">,
+            default: "normal",
         },
     },
     setup(props) {

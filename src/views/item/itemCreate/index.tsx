@@ -60,14 +60,6 @@ export const ItemCreate = defineComponent({
             { id: 6, name: "车费", sign: tagIcon, type: "expenses" },
             { id: 7, name: "聚餐", sign: tagIcon, type: "expenses" },
             { id: 8, name: "电影", sign: tagIcon, type: "expenses" },
-            { id: 1, name: "餐费", sign: tagIcon, type: "expenses" },
-            { id: 2, name: "车费", sign: tagIcon, type: "expenses" },
-            { id: 3, name: "聚餐", sign: tagIcon, type: "expenses" },
-            { id: 4, name: "电影", sign: tagIcon, type: "expenses" },
-            { id: 5, name: "餐费", sign: tagIcon, type: "expenses" },
-            { id: 6, name: "车费", sign: tagIcon, type: "expenses" },
-            { id: 7, name: "聚餐", sign: tagIcon, type: "expenses" },
-            { id: 8, name: "电影", sign: tagIcon, type: "expenses" },
         ]);
         const refIncomeTags = ref([
             { id: 5, name: "工资", sign: tagIcon, type: "income" },
@@ -107,7 +99,6 @@ export const ItemCreate = defineComponent({
                                 })}
                             </Tab>
                             <Tab name="收入">
-                                {" "}
                                 <div class="flex flex-col items-center m-3 ml-4">
                                     <div class="w-12 h-12 rounded-[50%] flex justify-center items-center mb-2 bg-[#efefef]">
                                         <img src={tagAddIcon} alt="" />
