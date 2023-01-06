@@ -43,7 +43,7 @@ export const TagCreate = defineComponent({
                         icon={left}
                         onClick={() => console.log("back")}
                     ></NavBar>
-                    <main class="w-full pt-[34px] pb-[60px] px-4">
+                    <main class="w-full pt-8 pb-14 px-4 overflow-auto h-[calc(100vh-80px)]">
                         <div class="flex items-start justify-center flex-col">
                             <form
                                 action=""
