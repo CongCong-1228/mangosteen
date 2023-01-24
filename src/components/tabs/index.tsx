@@ -1,4 +1,4 @@
-import { defineComponent, PropType } from "vue";
+import { defineComponent, Fragment, PropType } from "vue";
 
 export const Tabs = defineComponent({
     props: {
@@ -14,6 +14,7 @@ export const Tabs = defineComponent({
     setup(props, context) {
         return () => {
             const tabs = context.slots.default?.();
+            console.log("tabs", tabs);
             if (!tabs) {
                 return () => null;
             }
@@ -26,8 +27,9 @@ export const Tabs = defineComponent({
                 <>
                     <nav class="bg-[#8f4cd7] pt-5">
                         <ol class="flex justify-center items-center ">
-                            {tabs.map((item) => {
+                            {tabs?.map((item) => {
                                 return (
+                                    // 选中情况下加了伪元素
                                     <li
                                         class={`grow shrink-0 flex justify-center items-center text-[#fff] relative pb-[12px] ${
                                             props.selected === item.props?.name
@@ -46,7 +48,7 @@ export const Tabs = defineComponent({
                             })}
                         </ol>
                     </nav>
-                    {tabs.find((item) => item.props?.name === props.selected)}
+                    {tabs?.find((item) => item.props?.name === props.selected)}
                 </>
             );
         };

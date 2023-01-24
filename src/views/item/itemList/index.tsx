@@ -1,7 +1,9 @@
 import { NavBar } from "@/components/navBar";
-import { defineComponent, ref } from "vue";
+import { defineComponent, reactive, ref } from "vue";
 import menu from "@/assets/icons/menu.svg";
 import { Tab, Tabs } from "@/components/tabs";
+import { ItemSummary } from "../itemSummary";
+import { Time } from "@/utils/time";
 
 export const ItemList = defineComponent({
     setup() {
@@ -14,6 +16,40 @@ export const ItemList = defineComponent({
             console.log("tabs change");
             selected.value = name;
         };
+        const time = new Time();
+        const customTime = reactive({
+            start: new Time(),
+            end: new Time(),
+        });
+        const timeList = [
+            {
+                name: "本月",
+                start: time.firstDayOfMonth(),
+                end: time.lastDayOfMonth(),
+            },
+            {
+                name: "上个月",
+                start: time.add(-1, "month").firstDayOfMonth(),
+                end: time.add(-1, "month").lastDayOfMonth(),
+            },
+            {
+                name: "今年",
+                start: time.firstDayOfYear(),
+                end: time.lastDayOfYear(),
+            },
+        ];
+        const timeListFunction = () => {
+            return timeList.map((item) => {
+                return (
+                    <Tab name={item.name}>
+                        <ItemSummary
+                            startDate={item.start.format()}
+                            endDate={item.end.format()}
+                        />
+                    </Tab>
+                );
+            });
+        };
         return () => {
             return (
                 <>
@@ -23,10 +59,26 @@ export const ItemList = defineComponent({
                             selected={selected.value}
                             onSelectedChange={onSelectedChange}
                         >
-                            <Tab name="本月">list1</Tab>
-                            <Tab name="上个月">list2</Tab>
-                            <Tab name="今年">list3</Tab>
-                            <Tab name="自定义时间">list4</Tab>
+                            {timeListFunction()}
+
+                            {/* <Tab name="上个月">
+                                <ItemSummary
+                                    startDate={new Time().format()}
+                                    endDate={new Time().format()}
+                                />
+                            </Tab>
+                            <Tab name="今年">
+                                <ItemSummary
+                                    startDate={new Time().format()}
+                                    endDate={new Time().format()}
+                                />
+                            </Tab>
+                            <Tab name="自定义时间">
+                                <ItemSummary
+                                    startDate={new Time().format()}
+                                    endDate={new Time().format()}
+                                />
+                            </Tab> */}
                         </Tabs>
                     </main>
                 </>
