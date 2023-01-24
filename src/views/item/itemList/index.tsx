@@ -59,9 +59,13 @@ export const ItemList = defineComponent({
                             selected={selected.value}
                             onSelectedChange={onSelectedChange}
                         >
-                            {timeListFunction()}
-
-                            {/* <Tab name="上个月">
+                            <Tab name="本月">
+                                <ItemSummary
+                                    startDate={new Time().format()}
+                                    endDate={new Time().format()}
+                                />
+                            </Tab>
+                            <Tab name="上个月">
                                 <ItemSummary
                                     startDate={new Time().format()}
                                     endDate={new Time().format()}
@@ -78,7 +82,7 @@ export const ItemList = defineComponent({
                                     startDate={new Time().format()}
                                     endDate={new Time().format()}
                                 />
-                            </Tab> */}
+                            </Tab>
                         </Tabs>
                     </main>
                 </>
