@@ -79,15 +79,17 @@ export class Time {
             | "second"
             | "millisecond"
     ) {
-        let date = new Date(this.date.getTime());
+        const date = new Date(this.date.getTime());
         switch (unit) {
             case "year":
                 date.setFullYear(date.getFullYear() + amount);
                 break;
             case "month":
+                // eslint-disable-next-line no-case-declarations
                 const d = date.getDate();
                 date.setDate(1);
                 date.setMonth(date.getMonth() + amount);
+                // eslint-disable-next-line no-case-declarations
                 const d2 = new Date(
                     date.getFullYear(),
                     date.getMonth() + 1,
