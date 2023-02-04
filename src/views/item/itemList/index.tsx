@@ -5,13 +5,11 @@ import { Tab, Tabs } from "@/components/tabs";
 import { ItemSummary } from "../itemSummary";
 import { Time } from "@/utils/time";
 import { Overlay } from "vant";
-import { Form, FormItem } from "@/components/form";
+import { OverLay } from "@/components/overLay";
 
 export const ItemList = defineComponent({
     setup() {
-        const onClick = () => {
-            console.log("itemList");
-        };
+        const isShowOverLayMenu = ref(false);
         const selected = ref("本月");
         const isShowOverLay = ref(false);
         const onSelectedChange = (name: string) => {
@@ -19,6 +17,10 @@ export const ItemList = defineComponent({
             if (name === "自定义时间") {
                 isShowOverLay.value = true;
             }
+        };
+        const onClick = () => {
+            console.log("itemList");
+            isShowOverLayMenu.value = !isShowOverLayMenu.value;
         };
         const time = new Time();
         const customTime = reactive({
@@ -45,6 +47,11 @@ export const ItemList = defineComponent({
         return () => {
             return (
                 <>
+                    {isShowOverLayMenu.value && (
+                        <OverLay
+                            onClose={() => (isShowOverLayMenu.value = false)}
+                        />
+                    )}
                     <NavBar title="山竹记账" icon={menu} onClick={onClick} />
                     <main>
                         <Tabs
@@ -74,7 +81,7 @@ export const ItemList = defineComponent({
                                     show={isShowOverLay.value}
                                     class="flex items-center justify-center"
                                 >
-                                    <div class="w-4/5 h-[35%] border overflow-hidden flex flex-column flex-wrap flex-col">
+                                    <div class="w-4/5 h-[35%] border overflow-hidden flex flex-column flex-col">
                                         <div class="h-14 w-full bg-[#5C33BE] text-left pl-4 flex items-center text-[#fff] text-[18px]">
                                             请选择时间
                                         </div>
@@ -101,6 +108,20 @@ export const ItemList = defineComponent({
                                                     placeholder="1-4个字符"
                                                 />
                                             </label>
+                                            <div class="text-right">
+                                                <button
+                                                    class="mr-4 p-2 bg-transparent"
+                                                    onClick={() => {
+                                                        isShowOverLay.value =
+                                                            false;
+                                                    }}
+                                                >
+                                                    取消
+                                                </button>
+                                                <button class="mr-4 p-2 bg-transparent">
+                                                    确认
+                                                </button>
+                                            </div>
                                         </div>
                                     </div>
                                 </Overlay>

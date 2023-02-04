@@ -14,10 +14,10 @@ export const OverLay = defineComponent({
             return (
                 <div class="absolute w-full h-full mt-[26px]">
                     <div
-                        class=" bg-[rgba(0,0,0,0.5)] w-full h-full"
+                        class=" bg-[rgba(0,0,0,0.5)] w-full h-full z-10 absolute"
                         onClick={props.onClose}
                     ></div>
-                    <div class="bg-[#fff] w-[70%] h-full absolute top-0">
+                    <div class="bg-[#fff] w-[70%] h-full absolute top-0 z-10">
                         <section class="h-36 w-full bg-[#5C33BE] flex flex-col pt-8 pl-4">
                             <span class="text-2xl text-[#fff] font-[350] mb-3">
                                 未登录用户
