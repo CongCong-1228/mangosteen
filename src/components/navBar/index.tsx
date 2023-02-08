@@ -15,7 +15,7 @@ export const NavBar = defineComponent({
     setup(props) {
         return () => {
             return (
-                <nav class="flex items-center justify-start pl-6 pt-[50px] pb-4 bg-gradient-to-b from-[#6336c2] to-[#8f4cd7]">
+                <nav class="flex items-center justify-start pl-6 pt-12 pb-4 bg-gradient-to-b from-[#6336c2] to-[#8f4cd7]">
                     <img
                         src={props.icon}
                         alt=""
