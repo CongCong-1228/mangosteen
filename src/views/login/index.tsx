@@ -5,7 +5,6 @@ import { Rules, validate } from "@/utils/validate";
 import { NavBar } from "@/components/navBar";
 import left from "@/assets/icons/back.svg";
 import mangosteen from "@/assets/icons/mangosteen.png";
-import { Icon } from "@/components/icon";
 
 export const LoginPage = defineComponent({
     props: {},

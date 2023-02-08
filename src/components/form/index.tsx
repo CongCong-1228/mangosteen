@@ -21,7 +21,7 @@ export const Form = defineComponent({
 export const FormItem = defineComponent({
     props: {
         type: {
-            type: String as PropType<"loginCode" | "text">,
+            type: String as PropType<"loginCode" | "text" | "select">,
             required: true,
         },
         label: {
@@ -36,6 +36,9 @@ export const FormItem = defineComponent({
         },
         placeholder: {
             type: String,
+        },
+        options: {
+            type: Array as PropType<Array<{ value: string; text: string }>>,
         },
     },
     emits: ["update:modelValue"],
@@ -78,6 +81,24 @@ export const FormItem = defineComponent({
                             ></CommonButton>
                         </div>
                     );
+                case "select":
+                    return (
+                        <select
+                            class="w-32 h-8 ml-[20px] pl-4 py-1 pr-2 border border-[#707070] border-solid rounded-lg"
+                            onChange={(e: any) => {
+                                context.emit(
+                                    "update:modelValue",
+                                    e.target.value
+                                );
+                            }}
+                        >
+                            {props.options?.map((option) => (
+                                <option value={option.value}>
+                                    {option.text}
+                                </option>
+                            ))}
+                        </select>
+                    );
                 default:
                     return context.slots.default?.();
             }
@@ -85,8 +106,18 @@ export const FormItem = defineComponent({
         return () => {
             return (
                 <>
-                    <label class="flex flex-col items-start pb-[5px]">
-                        <span class="text-[18px] font-[350] mb-[10px]">
+                    <label
+                        class={
+                            props.type === "select"
+                                ? "flex items-center justify-start flex-wrap pb-[5px]"
+                                : "flex flex-col items-start pb-[5px]"
+                        }
+                    >
+                        <span
+                            class={`text-[18px] font-[350] ${
+                                props.type !== "select" ? "mb-[10px]" : ""
+                            }`}
+                        >
                             {props.label}
                         </span>
                         {content.value}

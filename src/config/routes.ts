@@ -13,6 +13,7 @@ import { TagCreate } from "../views/tag/tagCreate";
 import { TagList } from "../views/tag/tagList";
 import { TagEdit } from "@/views/tag/tagEdit";
 import { LoginPage } from "@/views/login";
+import { Statistics } from "@/views/statistics";
 
 export const routes: RouteRecordRaw[] = [
     { path: "/", redirect: "/welcome/first" },
@@ -57,5 +58,9 @@ export const routes: RouteRecordRaw[] = [
     {
         path: "/login",
         component: LoginPage,
+    },
+    {
+        path: "/statistics/charts",
+        component: Statistics,
     },
 ];
