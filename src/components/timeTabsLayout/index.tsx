@@ -71,7 +71,7 @@ export const TimeTabsLayout = defineComponent({
                         />
                     )}
                     <NavBar title="山竹记账" icon={menu} onClick={onClick} />
-                    <main>
+                    <main class="h-[calc(100vh-80px)] overflow-auto">
                         <Tabs
                             selected={selected.value}
                             onSelectedChange={onSelectedChange}
