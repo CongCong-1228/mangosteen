@@ -10,6 +10,7 @@ export const LoginPage = defineComponent({
     props: {},
     setup() {
         const formData = reactive({
+            name: "",
             email: "",
             loginCode: "",
         });
@@ -20,6 +21,13 @@ export const LoginPage = defineComponent({
             console.log("submit");
             e.preventDefault();
             const rules: Rules<typeof formData> = [
+                { key: "name", type: "required", message: "必填" },
+                {
+                    key: "name",
+                    type: "pattern",
+                    regex: /^.{1,10}$/,
+                    message: "只能填 1 到 10 个字符",
+                },
                 { key: "email", type: "required", message: "必填" },
                 {
                     key: "email",
@@ -36,6 +44,7 @@ export const LoginPage = defineComponent({
                 },
             ];
             Object.assign(errors, {
+                name: undefined,
                 email: undefined,
                 loginCode: undefined,
             });
@@ -59,6 +68,13 @@ export const LoginPage = defineComponent({
                     </div>
                     <Form class="w-full flex flex-col" onSubmit={onSubmit}>
                         <FormItem
+                            label="用户名"
+                            type="text"
+                            placeholder="请输入用户名"
+                            v-model={formData.name}
+                            error={errors["name"] && errors["name"][0]}
+                        />
+                        <FormItem
                             label="邮箱地址"
                             type="text"
                             placeholder="请输入邮箱，然后发送验证码"
@@ -78,8 +94,6 @@ export const LoginPage = defineComponent({
                     <div class="w-full px-4">
                         <CommonButton title="登录" clickEvent={onSubmit} />
                     </div>
-                    <span>{formData.email}</span>
-                    <span>{formData.loginCode}</span>
                 </>
             );
         };
