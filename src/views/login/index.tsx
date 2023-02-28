@@ -86,6 +86,10 @@ export const LoginPage = defineComponent({
                             type="loginCode"
                             placeholder="六位数字"
                             v-model={formData.loginCode}
+                            onClick={() => {
+                                console.log("发送验证吗");
+                            }}
+                            countFrom={60}
                             error={
                                 errors["loginCode"] && errors["loginCode"][0]
                             }

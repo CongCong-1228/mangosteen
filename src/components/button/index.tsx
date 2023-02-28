@@ -1,4 +1,4 @@
-import { defineComponent, PropType, toRefs } from "vue";
+import { ButtonHTMLAttributes, defineComponent, PropType, toRefs } from "vue";
 import "./index.scss";
 
 export const CommonButton = defineComponent({
@@ -16,6 +16,14 @@ export const CommonButton = defineComponent({
             type: String as PropType<"normal" | "danger" | "success">,
             default: "normal",
         },
+        type: {
+            type: String as PropType<ButtonHTMLAttributes["type"]>,
+            default: "button",
+        },
+        disabled: {
+            type: Boolean,
+            default: false,
+        },
     },
     setup(props) {
         // 将props的数据转换成响应式的ref，调用时要用.value
@@ -24,6 +32,8 @@ export const CommonButton = defineComponent({
             return (
                 <div class={`w-full`}>
                     <button
+                        disabled={props.disabled}
+                        type={props.type}
                         class={[
                             "rounded-lg text-[18px] text-[#fff] font-[350] h-12 w-full cursor-pointer",
                             props.level,

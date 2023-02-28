@@ -1,4 +1,4 @@
-import { PropType, computed, defineComponent } from "vue";
+import { PropType, computed, defineComponent, ref } from "vue";
 import { CommonButton } from "../button";
 
 export const Form = defineComponent({
@@ -40,9 +40,31 @@ export const FormItem = defineComponent({
         options: {
             type: Array as PropType<Array<{ value: string; text: string }>>,
         },
+        countFrom: {
+            type: Number as PropType<number>,
+            default: 60,
+        },
+        onClick: {
+            type: Function as PropType<() => void>,
+        },
     },
     emits: ["update:modelValue"],
     setup(props, context) {
+        const timer = ref<number>();
+        const count = ref<number>(props.countFrom);
+        // !!双重否定会转换成boolean值
+        const isCounting = computed(() => !!timer.value);
+        const onClickLoginCode = () => {
+            props.onClick?.();
+            timer.value = window.setInterval(() => {
+                count.value -= 1;
+                if (count.value === 0) {
+                    clearInterval(timer.value);
+                    timer.value = undefined;
+                    count.value = props.countFrom;
+                }
+            }, 1000);
+        };
         const content = computed(() => {
             switch (props.type) {
                 case "text":
@@ -76,8 +98,14 @@ export const FormItem = defineComponent({
                                 }
                             />
                             <CommonButton
-                                title={"发送验证码"}
-                                clickEvent={() => console.log("发送验证码")}
+                                title={
+                                    isCounting.value
+                                        ? `${count.value}后可重新发送`
+                                        : "发送验证码"
+                                }
+                                disabled={isCounting.value}
+                                type="button"
+                                clickEvent={onClickLoginCode}
                             ></CommonButton>
                         </div>
                     );
