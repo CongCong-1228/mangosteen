@@ -9,6 +9,7 @@ import { resolve } from "path";
 export default defineConfig({
     // base: "/mangosteen/dist/"
     base: "/",
+    build: {},
     plugins: [
         vue(),
         vueJsx({
@@ -19,10 +20,13 @@ export default defineConfig({
             resolvers: [VantResolver()],
         }),
     ],
+    // 解决
     resolve: {
+        // 别名
         alias: {
             "@": resolve(__dirname, "./src"),
         },
+        // 扩展名
         extensions: [".js", ".jsx", ".ts", ".tsx"],
     },
 });
